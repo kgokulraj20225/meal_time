@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_time/allfun.dart';
 
 class offers_page extends StatefulWidget {
   const offers_page({super.key});
@@ -10,6 +11,12 @@ class offers_page extends StatefulWidget {
 class _offers_pageState extends State<offers_page> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("offer page"));
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: text("Latest Offers", Colors.black, 30, FontWeight.bold),
+        ),
+      ),
+    );
   }
 }
