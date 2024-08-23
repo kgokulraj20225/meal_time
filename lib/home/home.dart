@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'menu.dart';
-import 'more_page.dart';
-import '../Offers/offers.dart';
-import 'pro_page.dart';
+import 'food_home_page/menu.dart';
+import 'more/more_page.dart';
+import 'Offers/offers.dart';
+import 'profile/profile.dart';
 
 class homee extends StatefulWidget {
   const homee({super.key});
@@ -39,7 +39,7 @@ class _homeState extends State<homee> {
             children: [
               menu(),
               offers_page(),
-              pro_page(),
+              profile(),
               more_page(),
             ],
           ),

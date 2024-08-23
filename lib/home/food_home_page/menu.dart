@@ -191,9 +191,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
 import 'package:meal_time/home/food_home_page/dessert.dessert_page_view.dart';
-import 'package:meal_time/home/food_home_page/more_page.dart';
-import 'package:meal_time/home/food_home_page/offers.dart';
-import 'package:meal_time/home/food_home_page/pro_page.dart';
 
 import 'Beverages.dart';
 import 'Food.dart';
@@ -211,74 +208,50 @@ class _menuState extends State<menu> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 4,
-        animationDuration: Durations.short1,
-        child: Scaffold(
-          appBar: AppBar(
-              backgroundColor: Color(0xfffdfdfd),
-              title: Padding(
+      home: Scaffold(
+        appBar: AppBar(
+            backgroundColor: Color(0xfffdfdfd),
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Menu",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35),
+              ),
+            ),
+            actions: [
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Menu",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35),
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      size: 30,
+                    )),
+              )
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(60.0), // Adjust height as needed
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 350,
+                  child: textfield2(
+                      Color(0xfffdfdfd),
+                      Colors.grey,
+                      Color(0xfffc6111),
+                      10,
+                      Offset(0, 8),
+                      BorderRadius.circular(30),
+                      EdgeInsets.all(10),
+                      "Search food"),
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        size: 30,
-                      )),
-                )
-              ],
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(60.0), // Adjust height as needed
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 350,
-                    child: textfield2(
-                        Color(0xfffdfdfd),
-                        Colors.grey,
-                        Color(0xfffc6111),
-                        10,
-                        Offset(0, 8),
-                        BorderRadius.circular(30),
-                        EdgeInsets.all(10),
-                        "Search food"),
-                  ),
-                ),
-              )),
-          bottomSheet: Container(
-            child: TabBar(
-              labelColor: Color(0xfffc6111),
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Color(0xfffc6111),
-              tabs: [
-                Tab(icon: Icon(Icons.window), text: "Menu"),
-                Tab(icon: Icon(Icons.shopping_bag_outlined), text: "Offers"),
-                Tab(icon: Icon(Icons.person), text: "Profile"),
-                Tab(icon: Icon(Icons.list_alt_outlined), text: "More"),
-              ],
-            ),
-          ),
-          backgroundColor: Color(0xfffdfdfd),
-          body: TabBarView(
-            children: [
-              menu1(),
-              offers_page(),
-              pro_page(),
-              more_page(),
-            ],
-          ),
-        ),
+            )),
+        backgroundColor: Color(0xfffdfdfd),
+        body: menu1(),
       ),
     );
   }
@@ -293,19 +266,23 @@ class menu1 extends StatefulWidget {
 
 class _menu1State extends State<menu1> {
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
+    // Get screen size
+    final screen = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Center(
         child: Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
+              height: screen.height * 1,
+              width: screen.width * 1,
             ),
             Positioned(
               left: 0,
-              top: 20,
+              top: screen.height *
+                  0.03, // Adjusted to a percentage of the screen height
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xfffc6111),
@@ -319,12 +296,15 @@ class _menu1State extends State<menu1> {
                           offset: Offset(0, 10),
                           blurRadius: 9)
                     ]),
-                height: 550,
-                width: 110,
+                height: screen.height *
+                    0.85, // Adjusted to a percentage of the screen height
+                width: screen.width *
+                    0.25, // Adjusted to a percentage of the screen width
               ),
             ),
             Positioned(
-              top: 50,
+              top: screen.height *
+                  0.07, // Adjusted to a percentage of the screen height
               child: catego1(
                   "https://t3.ftcdn.net/jpg/03/13/00/70/240_F_313007059_Lbgy6IGzphFh9xFpNOMSa8AaEdg89yVL.jpg",
                   "Food",
@@ -334,27 +314,30 @@ class _menu1State extends State<menu1> {
                   Food()),
             ),
             Positioned(
-                top: 180,
+                top: screen.height *
+                    0.25, // Adjusted to a percentage of the screen height
                 child: catego(
-                  "https://t4.ftcdn.net/jpg/02/09/31/77/240_F_209317774_yDBNUzK0JuAB3HgBrHFlAm0Xi8GrbKKP.jpg",
-                  "Beverages",
-                  "220 Items",
-                  BoxFit.cover,
-                  BoxShape.rectangle,
-                  BorderRadius.circular(30),
-                  bev(),
-                )),
+                    "https://t4.ftcdn.net/jpg/02/09/31/77/240_F_209317774_yDBNUzK0JuAB3HgBrHFlAm0Xi8GrbKKP.jpg",
+                    "Beverages",
+                    "220 Items",
+                    BoxFit.cover,
+                    BoxShape.rectangle,
+                    BorderRadius.circular(30),
+                    bev(),
+                    context)),
             Positioned(
-                top: 310,
+                top: screen.height *
+                    0.45, // Adjusted to a percentage of the screen height
                 child: catego1(
-                    "https://t3.ftcdn.net/jpg/02/55/53/44/240_F_255534476_n8JzjZtzOFW5g3TXTLMd6QGVnToi6hqj.jpg",
+                    "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600",
                     "Desserts",
                     "155 Items",
                     BoxFit.cover,
                     BoxShape.circle,
                     dessert_view())),
             Positioned(
-                top: 440,
+                top: screen.height *
+                    0.65, // Adjusted to a percentage of the screen height
                 child: catego(
                     "https://t3.ftcdn.net/jpg/02/81/76/44/240_F_281764445_OWXUobpyBgxQw6LU3sckSY0nGGVTeoXs.jpg",
                     "Promotions",
@@ -362,7 +345,18 @@ class _menu1State extends State<menu1> {
                     BoxFit.cover,
                     BoxShape.rectangle,
                     BorderRadius.circular(30),
-                    pro())),
+                    pro(),
+                    context)),
+            Positioned(
+                top: screen.height *
+                    0.85, // Adjusted to a percentage of the screen height
+                child: catego1(
+                    "https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=400",
+                    "Coffee",
+                    "255 Items",
+                    BoxFit.cover,
+                    BoxShape.circle,
+                    dessert_view())),
           ],
         ),
       ),

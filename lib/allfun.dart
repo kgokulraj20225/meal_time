@@ -121,10 +121,12 @@ Widget textfield2(Color c1, Color c2, Color c3, double int, Offset offset,
 }
 
 Widget catego(String img, String t1, String t2, BoxFit bf, BoxShape bs,
-    BorderRadius br, Widget page) {
+    BorderRadius br, Widget page, BuildContext contxt) {
+  final siize = MediaQuery.of(contxt).size;
   return Container(
+    // color: Colors.red,
     height: 130,
-    width: 400,
+    width: siize.width * 1,
     child: Stack(
       children: [
         Positioned(
@@ -342,7 +344,93 @@ Widget catego1(
   );
 }
 
-Widget banner(String img, String t1, String t2, String t3, Widget page) {
+Widget more_caterage(IconData icn, String t1, Widget page1) {
+  return Container(
+    // color: Colors.yellow,
+    height: 130,
+    width: 400,
+    child: Stack(
+      children: [
+        Positioned(
+            left: 38,
+            child: Container(
+              height: 100,
+              width: 320,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey, offset: Offset(0, 10), blurRadius: 12)
+                ],
+                color: Color(0xfffdfdfd),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xfffc6111),
+                      radius: 30,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          icn,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 18.0),
+                    child: text(
+                      t1,
+                      Colors.black87,
+                      20,
+                      FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            )),
+        Positioned(
+            left: 335,
+            top: 29,
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey, offset: Offset(0, 10), blurRadius: 12)
+                ],
+                color: Color(0xfffdfdfd),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              child: Builder(builder: (context) {
+                return IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => page1),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color(0xfffc6111),
+                  ),
+                );
+              }),
+            ))
+      ],
+    ),
+  );
+}
+
+Widget banner(String img, String t1, String t2, String t3, Widget page,
+    BuildContext context) {
+  final scrr = MediaQuery.of(context).size;
   return Stack(
     children: [
       Padding(
@@ -356,8 +444,8 @@ Widget banner(String img, String t1, String t2, String t3, Widget page) {
             child: Container(
               clipBehavior: Clip.hardEdge,
               // padding: EdgeInsets.all(30),
-              height: 200,
-              width: 375,
+              height: scrr.height * 0.25,
+              width: scrr.width * 0.95,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color(0xfffdfdfd),
@@ -396,5 +484,122 @@ Widget banner(String img, String t1, String t2, String t3, Widget page) {
         ),
       )
     ],
+  );
+}
+
+Widget offerbanner(String img, String t1, String t2, String t3, String t4,
+    String t5, String t6, Widget page, BuildContext context) {
+  final scrrr = MediaQuery.of(context).size;
+  return Column(
+    children: [
+      Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Builder(builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => page));
+                },
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  // padding: EdgeInsets.all(30),
+                  height: scrrr.height * 0.25,
+                  width: scrrr.width * 0.95,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color(0xfffdfdfd),
+                      shape: BoxShape.rectangle,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(scale: 1, img))),
+                ),
+              );
+            }),
+          ),
+          Positioned(
+            left: 8.5,
+            bottom: 8.5,
+            child: Container(
+              height: 80,
+              width: 130,
+              decoration: BoxDecoration(
+                  color: Colors.orangeAccent.withOpacity(0.8),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      topRight: Radius.circular(30))),
+              child: Center(
+                child: Container(
+                  color: Colors.transparent,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        text(t1, Colors.white, 50, FontWeight.bold),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            text(t2, Colors.white, 30, FontWeight.bold),
+                            text(t3, Colors.white, 20, FontWeight.bold)
+                          ],
+                        )
+                      ]),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            text(t4, Colors.black54, 13, FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 15,
+                  color: Colors.deepOrange,
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                text(t5, Colors.deepOrange, 10, FontWeight.normal),
+                SizedBox(
+                  width: 2,
+                ),
+                text(t6, Colors.black54, 10, FontWeight.bold),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget textfieldprofile(String t1, String t2, BuildContext context) {
+  final sccr = MediaQuery.of(context).size;
+  return Container(
+    height: 65,
+    width: sccr.width * 0.85,
+    decoration: BoxDecoration(
+        color: Colors.grey.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(50)),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 30.0, top: 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          text(t1, Colors.grey, 10, FontWeight.normal),
+          text(t2, Colors.black, 16, FontWeight.bold),
+        ],
+      ),
+    ),
   );
 }

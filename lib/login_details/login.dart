@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meal_time/home/home.dart';
 
-import 'package:meal_time/home/food_home_page/Menu.dart';
+import 'package:meal_time/home/food_home_page/menu.dart';
 import 'package:meal_time/login_details/reset%20password.dart';
 import 'package:meal_time/main.dart';
 import 'package:meal_time/login_details/registry.dart';
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 clipBehavior: Clip.hardEdge,
                 height: screenSize.height * 0.755,
+                // height: 650,
                 decoration: BoxDecoration(
                   color: Color(0xfffdfdfd),
                   borderRadius: BorderRadius.only(
@@ -148,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => menu()));
+                                      builder: (context) => homee()));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xfffc6111),
