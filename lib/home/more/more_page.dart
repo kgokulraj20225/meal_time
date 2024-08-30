@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
 import 'package:meal_time/home/Offers/offers.dart';
+import 'package:meal_time/home/more/morepage.about_us.dart';
+import 'package:meal_time/home/more/morepage.myorder.dart';
+import 'package:meal_time/home/more/morepage.notify.dart';
 import 'package:meal_time/home/more/morepage.paymentdetails.dart';
 
 class more_page extends StatefulWidget {
@@ -50,10 +53,10 @@ class _more_page1State extends State<more_page1> {
             child: more_caterage(
                 Icons.payments_outlined, "Payment Details", payament()),
           ),
-          more_caterage(Icons.shopping_bag, "My Order", ho()),
-          more_caterage(Icons.notifications, "Notification", ho()),
+          more_caterage(Icons.shopping_bag, "My Order", myorder()),
+          more_caterage(Icons.notifications, "Notification", notification()),
           more_caterage(Icons.mail, "Inbox", ho()),
-          more_caterage(Icons.info_rounded, "About Us", ho()),
+          more_caterage(Icons.info_rounded, "About Us", about_us()),
         ],
       ),
     );

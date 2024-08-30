@@ -79,7 +79,9 @@ class _pageState extends State<page> {
                     BorderRadius.circular(30),
                     Icons.email,
                     EdgeInsets.all(20),
-                    "email"),
+                    "email",
+                    "Please enter your email",
+                    TextInputType.emailAddress),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,

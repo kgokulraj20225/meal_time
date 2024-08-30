@@ -19,7 +19,7 @@ class _First_pageState extends State<First_page> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 3),
         () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Onboard())));
   }
@@ -29,35 +29,76 @@ class _First_pageState extends State<First_page> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Color(0xfffdfdfd),
-        body: sec(),
+        body: Container(
+          margin:
+              EdgeInsets.only(top: 300, left: 70), // Adjusting the top margin
+          height: 250,
+          width: 250,
+          clipBehavior: Clip.hardEdge,
+          decoration:
+              BoxDecoration(color: Colors.transparent, shape: BoxShape.circle),
+          child: Center(
+            child: Image.network(
+                "https://tse2.mm.bing.net/th?id=OIP.MV4I-TN5p3SQOIeaNLsw1gHaGL&pid=Api&P=0&h=180"),
+          ),
+        ),
       ),
     );
   }
 }
 
-class sec extends StatefulWidget {
-  const sec({super.key});
-
+class RotatingLogo extends StatefulWidget {
   @override
-  State<sec> createState() => _secState();
+  _RotatingLogoState createState() => _RotatingLogoState();
 }
 
-class _secState extends State<sec> {
+class _RotatingLogoState extends State<RotatingLogo> {
+  List<String> logos = [
+    'assets/i1.jpg',
+    'assets/i2.jpg',
+    'assets/i3.jpg',
+    'assets/i4.jpg',
+    'assets/i5.jpg',
+    'assets/i6.jpg',
+    'assets/i8.jpg',
+    'assets/i9.jpg',
+    'assets/i10.jpg',
+    'assets/i11.jpg',
+    'assets/i12.jpg',
+    'assets/i13.png' // Add as many logos as you have
+  ];
+
+  int _currentLogoIndex = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startLogoRotation();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startLogoRotation() {
+    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      setState(() {
+        _currentLogoIndex = (_currentLogoIndex + 1) % logos.length;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: Alignment.center, children: [
-      Positioned(
-        child: Center(
-          child: Container(
-            height: 220,
-            width: 220,
-            child: Image.network(
-              "https://tse2.mm.bing.net/th?id=OIP.MV4I-TN5p3SQOIeaNLsw1gHaGL&pid=Api&P=0&h=180",
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
+    return Center(
+      child: Image.asset(
+        logos[_currentLogoIndex],
+        width: 220, // Adjust as necessary
+        height: 220, // Adjust as necessary
       ),
-    ]);
+    );
   }
 }

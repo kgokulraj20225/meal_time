@@ -44,8 +44,8 @@ class _offers_pageState extends State<offers_page> {
                     text("Find discounts.  Offers Special \nmeals and more",
                         Colors.grey, 16, FontWeight.bold),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8.0, top: 10.0, bottom: 16),
+                      padding:
+                          EdgeInsets.only(right: 8.0, top: 10.0, bottom: 16),
                       child: GestureDetector(
                         onTap: () {},
                         child: Container(

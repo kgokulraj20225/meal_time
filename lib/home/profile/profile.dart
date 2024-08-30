@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meal_time/allfun.dart';
 import 'package:meal_time/home/food_home_page/menu.dart';
+import 'package:meal_time/login_details/on%20boardscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../login_details/login.dart';
 import 'profile.photo.dart';
@@ -25,14 +27,19 @@ class _profileState extends State<profile> {
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => menu()));
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const On();
+                    }), (route) => false);
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => menu()));
                   },
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://wallpaperaccess.com/full/9327602.jpg"),
+                  icon: Icon(
+                    Icons.logout,
+                    color: Color(0xfffc6111),
+                    size: 30,
                   )),
             )
           ],
@@ -51,6 +58,28 @@ class proffile extends StatefulWidget {
 }
 
 class _proffileState extends State<proffile> {
+  // Future<void> _logout(BuildContext context) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   await prefs.setBool('login', false);
+  //
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => On()),
+  //   );
+  // }
+  // Future<void> _logout(BuildContext context) async {
+  //   // Get the instance of SharedPreferences
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //
+  //   // Remove the 'login' key
+  //   await prefs.remove('login');
+  //   Navigator.push(context, MaterialPageRoute(builder: (context) => menu()));
+  //   // Clear the navigation stack and go to the On screen
+  //   // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+  //   //   return const Onboard();
+  //   // }), (route) => false);
+  // }
+
   @override
   Widget build(BuildContext context) {
     final scc = MediaQuery.of(context).size;
@@ -63,28 +92,31 @@ class _proffileState extends State<proffile> {
           child: ListView(
             children: [
               Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => photo()));
-                  },
-                  child: Container(
-                    clipBehavior: Clip.hardEdge,
-                    height: 110,
-                    width: 110,
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(0, 2),
-                              blurRadius: 12)
-                        ],
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                              "https://wallpaperaccess.com/full/9327602.jpg",
-                            ))),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => photo()));
+                    },
+                    child: Container(
+                      clipBehavior: Clip.hardEdge,
+                      height: 110,
+                      width: 110,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(0, 2),
+                                blurRadius: 12)
+                          ],
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                "https://wallpaperaccess.com/full/9327602.jpg",
+                              ))),
+                    ),
                   ),
                 ),
               ),
@@ -111,21 +143,12 @@ class _proffileState extends State<proffile> {
                       child: text("Hi there Gokulraj!", Colors.black, 20,
                           FontWeight.bold),
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginApp()));
-                        },
-                        child: text(
-                            "Sign Out!", Colors.grey, 16, FontWeight.bold)),
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: textfieldprofile("Name", "Gokulraj K", context),
+                child: textfieldpprofile("Name", "Gokulraj K", context),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

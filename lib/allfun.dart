@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:file/local.dart';
+import "login_details/registry.dart";
 
 Widget text(String text, Color color, double size, FontWeight weight) {
   return Container(
     child: Text(
       text,
+      textScaler: TextScaler.linear(1),
       style: TextStyle(
         color: color,
         fontSize: size,
@@ -15,16 +18,33 @@ Widget text(String text, Color color, double size, FontWeight weight) {
   );
 }
 
-Widget textfield(Color c1, Color c2, Color c3, double int, Offset offset,
-    BorderRadius br, IconData icon, EdgeInsets ei, String text) {
+Widget textfield(
+    Color c1,
+    Color c2,
+    Color c3,
+    double int,
+    Offset offset,
+    BorderRadius br,
+    IconData icon,
+    EdgeInsets ei,
+    String text,
+    String retunnn,
+    TextInputType inputtype) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 13.0),
     decoration: BoxDecoration(borderRadius: br, color: c1, boxShadow: [
       BoxShadow(color: c2, blurRadius: int, offset: offset, spreadRadius: 3)
     ]),
-    child: TextField(
+    child: TextFormField(
       style: TextStyle(color: c3),
       cursorColor: c3,
+      keyboardType: inputtype,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return retunnn;
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelText: text,
         labelStyle: TextStyle(color: c3),
@@ -41,17 +61,74 @@ Widget textfield(Color c1, Color c2, Color c3, double int, Offset offset,
   );
 }
 
-Widget textfielld(Color c1, Color c2, Color c3, double int, Offset offset,
-    BorderRadius br, IconData icon, EdgeInsets ei, String text) {
+Widget textfiellld(
+    Color c2,
+    Color c3,
+    BorderRadius br,
+    IconData icon,
+    EdgeInsets ei,
+    String text,
+    // String retunn,
+    TextEditingController tec,
+    TextInputType inputtype) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+    decoration: BoxDecoration(
+      borderRadius: br,
+    ),
+    child: TextFormField(
+      controller: tec,
+      style: TextStyle(color: c3),
+      cursorColor: c3,
+      keyboardType: inputtype,
+      // focusNode: FocusNode,
+
+      decoration: InputDecoration(
+        focusedBorder: InputBorder.none,
+        labelText: text,
+        labelStyle: TextStyle(color: c3),
+        contentPadding: ei,
+        suffixIcon: Icon(icon),
+        border: OutlineInputBorder(
+          borderRadius: br,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget textfielld(
+    Color c1,
+    Color c2,
+    Color c3,
+    double int,
+    Offset offset,
+    BorderRadius br,
+    IconData icon,
+    EdgeInsets ei,
+    String text,
+    String retunn,
+    // TextEditingController tec,
+    TextInputType inputtype) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
     decoration: BoxDecoration(borderRadius: br, color: c1, boxShadow: [
       BoxShadow(color: c2, blurRadius: int, offset: offset, spreadRadius: 3)
     ]),
-    child: TextField(
+    child: TextFormField(
+      // controller: tec,
       style: TextStyle(color: c3),
       cursorColor: c3,
+      keyboardType: inputtype,
+      // focusNode: FocusNode,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return retunn;
+        }
+        return null;
+      },
       decoration: InputDecoration(
+        focusedBorder: InputBorder.none,
         labelText: text,
         labelStyle: TextStyle(color: c3),
         contentPadding: ei,
@@ -62,6 +139,86 @@ Widget textfielld(Color c1, Color c2, Color c3, double int, Offset offset,
               BorderSide(color: Colors.red),
               BorderSide.none,
             )),
+      ),
+    ),
+  );
+}
+
+Widget textfielld2(
+    Color c1,
+    Color c2,
+    Color c3,
+    BorderRadius br,
+    EdgeInsets ei,
+    double hor,
+    double ver,
+    String text,
+    String retun,
+    TextInputType inputtype) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: hor, vertical: ver),
+    decoration: BoxDecoration(
+      borderRadius: br,
+      color: c1,
+    ),
+    child: TextFormField(
+      style: TextStyle(color: c3),
+      cursorColor: c3,
+      keyboardType: inputtype,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return retun;
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        hintText: text,
+        hintStyle: TextStyle(color: c2),
+        contentPadding: ei,
+        border:
+            OutlineInputBorder(borderRadius: br, borderSide: BorderSide.none),
+      ),
+    ),
+  );
+}
+
+Widget datetextfielld2(
+    Color c1,
+    Color c2,
+    Color c3,
+    BorderRadius br,
+    EdgeInsets ei,
+    double hei,
+    double wid,
+    // double hor,
+    // double ver,
+    String text,
+    String retun,
+    TextInputType inputtype) {
+  return Container(
+    height: hei,
+    width: wid,
+    // margin: EdgeInsets.symmetric(horizontal: hor, vertical: ver),
+    decoration: BoxDecoration(
+      borderRadius: br,
+      color: c1,
+    ),
+    child: TextFormField(
+      style: TextStyle(color: c3),
+      cursorColor: c3,
+      keyboardType: inputtype,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return retun;
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        hintText: text,
+        hintStyle: TextStyle(color: c2),
+        contentPadding: ei,
+        border:
+            OutlineInputBorder(borderRadius: br, borderSide: BorderSide.none),
       ),
     ),
   );
@@ -104,6 +261,7 @@ Widget textfield2(Color c1, Color c2, Color c3, double int, Offset offset,
       cursorColor: c3,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search),
+        // focusedBorder: InputBorder.none,
         labelText: text,
         labelStyle: TextStyle(
           color: c3,
@@ -444,7 +602,7 @@ Widget banner(String img, String t1, String t2, String t3, Widget page,
             child: Container(
               clipBehavior: Clip.hardEdge,
               // padding: EdgeInsets.all(30),
-              height: scrr.height * 0.25,
+              height: 220,
               width: scrr.width * 0.95,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -505,7 +663,7 @@ Widget offerbanner(String img, String t1, String t2, String t3, String t4,
                 child: Container(
                   clipBehavior: Clip.hardEdge,
                   // padding: EdgeInsets.all(30),
-                  height: scrrr.height * 0.25,
+                  height: 230,
                   width: scrrr.width * 0.95,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -601,5 +759,229 @@ Widget textfieldprofile(String t1, String t2, BuildContext context) {
         ],
       ),
     ),
+  );
+}
+
+Widget textfieldpprofile(String t1, String t2, BuildContext context) {
+  final sccr = MediaQuery.of(context).size;
+  return Container(
+    height: 65,
+    width: sccr.width * 0.85,
+    decoration: BoxDecoration(
+        color: Colors.grey.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(50)),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 30.0, top: 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // text(t1, Colors.grey, 10, FontWeight.normal),
+          Text(
+            t1,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 10,
+            ),
+          ),
+          Text(
+            t2,
+            style: TextStyle(
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+          )
+          // text(t2, Colors.black, 16, FontWeight.bold),
+        ],
+      ),
+    ),
+  );
+}
+
+// Home_page Functions
+Widget home_banner(String img, String t4, String t5, String t6, Widget page,
+    BuildContext context) {
+  final scrrr = MediaQuery.of(context).size;
+  return Column(
+    children: [
+      Stack(
+        children: [
+          Builder(builder: (context) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => page));
+              },
+              child: Container(
+                clipBehavior: Clip.hardEdge,
+                // padding: EdgeInsets.all(30),
+                height: 250,
+                width: scrrr.width * 1,
+                decoration: BoxDecoration(
+                    // borderRadius: BorderRadius.circular(15),
+                    color: Color(0xfffdfdfd),
+                    shape: BoxShape.rectangle,
+                    image: DecorationImage(
+                        fit: BoxFit.cover, image: NetworkImage(scale: 1, img))),
+              ),
+            );
+          }),
+        ],
+      ),
+      Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            text(t4, Colors.black54, 20, FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 15,
+                  color: Colors.deepOrange,
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                text(t5, Colors.deepOrange, 10, FontWeight.normal),
+                SizedBox(
+                  width: 2,
+                ),
+                text(t6, Colors.black54, 10, FontWeight.bold),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget a(String img, BoxShape bs, BoxFit bf, BorderRadius br, String t1,
+    double num) {
+  return GestureDetector(
+    onTap: () {},
+    child: Column(
+      children: [
+        Container(
+          clipBehavior: Clip.hardEdge,
+          height: 80,
+          width: 80,
+          decoration: BoxDecoration(
+              borderRadius: br,
+              shape: bs,
+              image: DecorationImage(
+                  fit: bf,
+                  image: NetworkImage(
+                    img,
+                  ))),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 4.0),
+          child: text(t1, Colors.black, num, FontWeight.bold),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget b(String img, BoxShape bs, BoxFit bf, BorderRadius br, String t4,
+    String t5, String t6, double num) {
+  return GestureDetector(
+    onTap: () {},
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          clipBehavior: Clip.hardEdge,
+          height: 150,
+          width: 250,
+          decoration: BoxDecoration(
+              borderRadius: br,
+              shape: bs,
+              image: DecorationImage(
+                  fit: bf,
+                  image: NetworkImage(
+                    img,
+                  ))),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              text(t4, Colors.black54, 13, FontWeight.bold),
+              Row(
+                children: [
+                  text(t6, Colors.black54, 10, FontWeight.bold),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Icon(
+                    Icons.star,
+                    size: 15,
+                    color: Colors.deepOrange,
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  text(t5, Colors.deepOrange, 10, FontWeight.normal),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget recent(String img, String t1, String t2, String t3, String t4) {
+  return Row(
+    children: [
+      Container(
+        clipBehavior: Clip.hardEdge,
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            shape: BoxShape.rectangle,
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  img,
+                ))),
+      ),
+      Padding(
+        padding: EdgeInsets.only(left: 20.0, bottom: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            text(t1, Colors.black, 17, FontWeight.bold),
+            SizedBox(
+              height: 2,
+            ),
+            text(t2, Colors.grey, 14, FontWeight.bold),
+            SizedBox(
+              height: 2,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  color: Color(0xfffc6111),
+                  size: 14,
+                ),
+                text(t3, Color(0xfffc6111), 14, FontWeight.normal),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: text(t4, Colors.grey, 14, FontWeight.bold),
+                )
+              ],
+            )
+          ],
+        ),
+      )
+    ],
   );
 }

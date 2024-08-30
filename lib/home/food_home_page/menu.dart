@@ -207,53 +207,57 @@ class _menuState extends State<menu> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-            backgroundColor: Color(0xfffdfdfd),
-            title: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Menu",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35),
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.shopping_cart,
-                      size: 30,
-                    )),
-              )
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(60.0), // Adjust height as needed
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 350,
-                  child: textfield2(
-                      Color(0xfffdfdfd),
-                      Colors.grey,
-                      Color(0xfffc6111),
-                      10,
-                      Offset(0, 8),
-                      BorderRadius.circular(30),
-                      EdgeInsets.all(10),
-                      "Search food"),
+        debugShowCheckedModeBanner: false,
+        home: DefaultTabController(
+          length: 4,
+          animationDuration: Durations.short1,
+          child: Scaffold(
+            appBar: AppBar(
+                backgroundColor: Color(0xfffdfdfd),
+                title: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Menu",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35),
+                  ),
                 ),
-              ),
-            )),
-        backgroundColor: Color(0xfffdfdfd),
-        body: menu1(),
-      ),
-    );
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          size: 30,
+                        )),
+                  )
+                ],
+                bottom: PreferredSize(
+                  preferredSize:
+                      Size.fromHeight(60.0), // Adjust height as needed
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 350,
+                      child: textfield2(
+                          Color(0xfffdfdfd),
+                          Colors.grey,
+                          Color(0xfffc6111),
+                          10,
+                          Offset(0, 8),
+                          BorderRadius.circular(30),
+                          EdgeInsets.all(10),
+                          "Search food"),
+                    ),
+                  ),
+                )),
+            backgroundColor: Color(0xfffdfdfd),
+            body: menu1(),
+          ),
+        ));
   }
 }
 
