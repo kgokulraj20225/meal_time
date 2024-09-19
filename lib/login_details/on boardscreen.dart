@@ -32,7 +32,7 @@ class _OnboardState extends State<Onboard> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: _login ? homee() : On(),
+      home: _login ? HomePageWithTabs() : On(),
     );
   }
 }

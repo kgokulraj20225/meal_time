@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
       await perffs.setString("password", password);
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => homee()));
+          context, MaterialPageRoute(builder: (context) => HomePageWithTabs()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Invalid username or password")));
